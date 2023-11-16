@@ -11,7 +11,20 @@ class Playlist(Base):
     __tablename__ = "playlists"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    title: Mapped[str] = Mapped(String, default="Title")
-    length: Mapped[float] = Mapped(Float, default="Length")
+    title: Mapped[str] = Column(String, default="Title")
+    length: Mapped[float] = Column(Float, default="Length")
     created_by: Mapped[int] = mapped_column(ForeignKey("users_id"))
-    date_added: Mapped[str] = Mapped(DateTime.date, default="Date Added")
+    date_added: Mapped[str] = Column(DateTime.date, default="Date Added")
+
+    # do I need to back populate created by foreign key to the users table?
+
+class PlaylistSong(Base):
+    __tablename__ = "playlist_songs"
+
+    id: Mapped[int] = mapped_column(primary_key=True, default=True)
+    song_id: Mapped[int] = mapped_column(ForeignKey(songs_id))
+    playlist_id: Mapped[int] = mapped_column(ForeignKey(playlists.id))
+    order: Mapped[int] = Column(Integer, default="Order")
+
+    # this is where I back populate to my tables that the foreign keys are connected to 
+    
