@@ -4,6 +4,8 @@ from typing import Optional
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Column, ForeignKey, Integer, String
 
+from models.album_model import Album
+
 class Base(DeclarativeBase):
     pass
 
@@ -15,7 +17,7 @@ class Artist(Base):
     albums_released: Mapped[int] = Column(Integer, default="Albums Released")
 
     # connect the albums_released column to the id in album class/table
-    
+
 
 class AlbumArtist(Base):
     __tablename__ = "album_artists"

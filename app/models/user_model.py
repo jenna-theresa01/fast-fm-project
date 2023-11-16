@@ -2,7 +2,7 @@ from typing import List
 from typing import Optional
 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Integer, String
 
 class Base(DeclarativeBase):
     pass
@@ -14,4 +14,3 @@ class User(Base):
     name: Mapped[str] = Column(String, default="Name")
     playlists_created: Mapped[int] = Column(Integer, default="Playlists Created")
 
-    
