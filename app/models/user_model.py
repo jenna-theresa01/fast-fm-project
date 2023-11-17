@@ -4,10 +4,8 @@ from typing import Optional
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Column, Integer, String
 
-from models.playlist_model import PlaylistModel
-
-class Base(DeclarativeBase):
-    pass
+from app.models.playlist_model import PlaylistModel
+from .base import Base
 
 class UserModel(Base):
     __tablename__ = "users"

@@ -4,11 +4,9 @@ from typing import Optional
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Column, ForeignKey, Integer, String
 
-from models.album_model import AlbumModel
+from app.models.album_model import AlbumModel
 
-
-class Base(DeclarativeBase):
-    pass
+from .base import Base
 
 class ArtistModel(Base):
     __tablename__ = "artists"

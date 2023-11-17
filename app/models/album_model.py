@@ -4,10 +4,7 @@ from typing import Optional
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Column, ForeignKey, Integer, String, Float, DateTime
 
-from models.song_model import SongModel
-
-class Base(DeclarativeBase):
-    pass
+from .base import Base
 
 class AlbumModel(Base):
     __tablename__ = "albums"
@@ -15,7 +12,7 @@ class AlbumModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     title: Mapped[str] = Column(String, default="Title")
     length: Mapped[float] = Column(Float, default="Length")
-    release_date: Mapped[str] = Column(DateTime.date, default="Release Date")
+    release_date: Mapped[DateTime] = Column(DateTime, default="Release Date")
 
     songs: Mapped[List["SongModel"]] = relationship(back_populates="albums")
 

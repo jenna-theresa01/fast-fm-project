@@ -6,9 +6,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Float, DateTime
 
 # from models.song_model import SongModel
 
-
-class Base(DeclarativeBase):
-    pass
+from .base import Base
 
 class PlaylistModel(Base):
     __tablename__ = "playlists"
@@ -16,8 +14,8 @@ class PlaylistModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     title: Mapped[str] = Column(String, default="Title")
     length: Mapped[float] = Column(Float, default="Length")
-    created_by: Mapped[int] = mapped_column(ForeignKey("users_id"))
-    date_added: Mapped[str] = Column(DateTime.date, default="Date Added")
+    created_by: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    date_added: Mapped[DateTime] = Column(DateTime, default="Date Added")
 
     # do I need to back populate created by foreign key to the users table?
 
