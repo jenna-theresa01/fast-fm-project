@@ -4,13 +4,13 @@ from typing import Optional
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Column, ForeignKey, Integer, String, Float, DateTime
 
-from models.song_model import Song
+# from models.song_model import SongModel
 
 
 class Base(DeclarativeBase):
     pass
 
-class Playlist(Base):
+class PlaylistModel(Base):
     __tablename__ = "playlists"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
@@ -20,9 +20,9 @@ class Playlist(Base):
     date_added: Mapped[str] = Column(DateTime.date, default="Date Added")
 
     # do I need to back populate created by foreign key to the users table?
-    # users
 
-class PlaylistSong(Base):
+
+class PlaylistSongModel(Base):
     __tablename__ = "playlist_songs"
 
     id: Mapped[int] = mapped_column(primary_key=True, default=True)
@@ -31,5 +31,5 @@ class PlaylistSong(Base):
     order: Mapped[int] = Column(Integer, default="Order")
 
     # this is where I back populate to my tables that the foreign keys are connected to 
-    playlists: Mapped["Playlist"] = relationship(back_populates="playlists")
-    songs: Mapped["Song"] = relationship(back_populates="songs")
+    playlists: Mapped["PlaylistModel"] = relationship(back_populates="playlist_songs")
+    # songs: Mapped["SongModel"] = relationship(back_populates="playlist_songs")
